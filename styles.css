@@ -46,7 +46,6 @@ ul {
   z-index: 10;
 }
 
-
 .navbar .logo {
   font-family: var(--serif);
   font-size: 1.8rem;
@@ -61,13 +60,11 @@ ul {
 .navbar a {
   font-weight: 500;
   color: var(--text-dark);
-
 }
 
 .navbar nav ul li a:not(.btn-nav):hover {
-  color: #b38c80; /* gleiche Farbe wie der Hover vom Button */
+  color: #b38c80; /* Hover-Farbe */
 }
-
 
 .btn-nav {
   background: var(--accent);
@@ -75,6 +72,7 @@ ul {
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
+
 .hero {
   display: flex;
   justify-content: space-between;
@@ -82,7 +80,7 @@ ul {
   padding: 5rem 8%;
   background: linear-gradient(to right, #fffdfc, #f2e8e4);
   gap: 3rem;
-  flex-wrap: wrap; /* Damit es auf kleinen Bildschirmen klappt */
+  flex-wrap: wrap; /* Für kleine Bildschirme */
 }
 
 .hero-content {
@@ -105,9 +103,6 @@ ul {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   transition: box-shadow 0.3s ease;
 }
-
-
-
 
 .hero h1 {
   font-size: 2.8rem;
@@ -133,13 +128,11 @@ ul {
 }
 
 .btn-nav:hover {
-  background-color:  #b38c80; /* dunklerer Ton beim Hover */
+  background-color:  #b38c80; /* dunkler beim Hover */
 }
 
-
-
 .social-buttons {
-  margin: 0.5rem 0 0 0; /* Nur etwas Abstand oben */
+  margin: 0.5rem 0 0 0;
   display: flex;
   justify-content: flex-start;
   gap: 1.2rem;
@@ -154,8 +147,6 @@ ul {
 .icon-btn:hover {
   color: #a3766b;
 }
-
-
 
 .split-section {
   display: flex;
@@ -173,17 +164,15 @@ ul {
   width: 100%;
   max-width: 480px;
   height: auto;
-  border-radius: 0; /* keine Rundung */
+  border-radius: 0;
   object-fit: cover;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
-
 
 .split-section .image img:hover {
   transform: scale(1.02);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
-
 
 .services-section {
   padding: 5rem 10%;
@@ -311,6 +300,43 @@ ul {
   text-decoration: underline;
 }
 
+/* Hamburger-Button Style */
+.nav-toggle {
+  display: none; /* Standardmäßig versteckt */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  z-index: 20;
+}
+
+.nav-toggle .hamburger,
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  display: block;
+  background-color: var(--accent);
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle .hamburger::before {
+  top: -8px;
+}
+
+.nav-toggle .hamburger::after {
+  top: 8px;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -336,36 +362,45 @@ ul {
     padding: 0.5rem 1rem;
   }
 
-
-
-/* ANIMATIONS */
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
+  /* Hamburger Button anzeigen */
+  .nav-toggle {
+    display: block;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* Navigation anpassen für mobile */
+  .navbar nav {
+    position: fixed;
+    top: 60px; /* Höhe der Navbar */
+    right: 0;
+    background: var(--cream);
+    height: calc(100vh - 60px);
+    width: 250px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    padding-top: 2rem;
+    z-index: 15;
   }
-}
 
-.cursor {
-  width: 20px;
-  height: 20px;
-  background: rgba(216,163,157,0.4);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transition: transform 0.2s ease;
-  mix-blend-mode: difference;
-}
+  .navbar nav.open {
+    transform: translateX(0);
+  }
 
-.luxury-title {
-  background: linear-gradient(90deg, #c6a69e, #f0e6de);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  /* Menü im mobilen Zustand vertikal */
+  .navbar nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 2rem;
+  }
 
+  /* Desktop-Menü verstecken */
+  .navbar ul {
+    display: none;
+  }
+
+  /* Menü anzeigen wenn offen */
+  .navbar nav.open ul {
+    display: flex;
+    flex-direction: column;
+  }
 }
