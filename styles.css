@@ -301,6 +301,7 @@ ul {
 }
 
 /* Hamburger-Button Style */
+/* Hamburger-Button Style */
 .nav-toggle {
   display: none; /* Standardmäßig versteckt */
   background: none;
@@ -309,6 +310,16 @@ ul {
   padding: 0;
   margin-left: 1rem;
   z-index: 20;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+
+/* Für Firefox speziell: */
+.nav-toggle::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 .nav-toggle .hamburger,
